@@ -12,8 +12,12 @@
   "type": "module",
   "description": "",
   "dependencies": {
+    "@clerk/express": "^1.7.60",
+    "cloudinary": "^2.8.0",
     "dotenv": "^17.2.3",
     "express": "^5.2.1",
-    "knitcharm": "file:.."
+    "jsonwebtoken": "^9.0.3",
+    "knitcharm": "file:..",
+    "mongoose": "^9.1.2"
   }
 }
