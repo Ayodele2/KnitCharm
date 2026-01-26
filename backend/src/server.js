@@ -10,6 +10,7 @@ import { ENV } from "./config/env.js";
 import { connectDB } from "./config/db.js";
 
 import adminRoutes from "./routes/admin.route.js";
+import userRoutes from "./routes/user.route.js";
 
 const app = express();
 
@@ -22,6 +23,7 @@ app.use(cors({ origin: ENV.CLIENT_URL, credentials: true })); // credentials: tr
 app.use("/api/inngest", serve({ client: inngest, functions }));
 
 app.use("/api/admin", adminRoutes);
+app.use("/api/user", userRoutes);
 
 app.get("/api/health", (req, res) => {
   res.status(200).json({ message: "Success" });
