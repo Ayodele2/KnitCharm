@@ -1,9 +1,4 @@
-import React from 'react'
-
-cons index = () => {
-  return (
-    <div>index</div>
-  )
+@import "tailwindcss";
+@plugin "daisyui" {
+  themes: forest;
 }
-
-export default index
