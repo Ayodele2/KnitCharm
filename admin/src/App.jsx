@@ -1,39 +1,32 @@
-import React from 'react'
-import {
-  SignedIn,
-  SignedOut,
-  SignInButton,
-  SignUpButton,
-  UserButton,
-  useUser
-} from "@clerk/clerk-react";
+import { Navigate, Route, Routes } from "react-router";
+import LoginPage from "./pages/LoginPage";
+import { useAuth } from "@clerk/clerk-react";
+import DashboardPage from "./pages/DashboardPage";
+import ProductsPage from "./pages/ProductsPage";
+import OrdersPage from "./pages/OrdersPage";
+import CustomersPage from "./pages/CustomersPage";
+import DashboardLayout from "./layouts/DashboardLayout";
 
+import PageLoader from "./components/PageLoader";
 
+function App() {
+  const { isSignedIn, isLoaded } = useAuth();
 
-const App = () => {
- 
+  if (!isLoaded) return <PageLoader />;
 
   return (
-    <div>
-      <h1>welcome to Knit efcharm</h1>
+    <Routes>
+      <Route path="/login" element={isSignedIn ? <Navigate to={"/dashboard"} /> : <LoginPage />} />
 
-       <header className="flex justify-end items-center p-4 gap-4 h-16">
-            <SignedOut>
-              <SignInButton />
-              <SignUpButton>
-                <button className="bg-[#6c47ff] text-white rounded-full font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 cursor-pointer">
-                  Sign Up
-                </button>
-              </SignUpButton>
-            </SignedOut>
-            <SignedIn>
-              <UserButton />
-            </SignedIn>
-          </header>
-
-      
-    </div>
-  )
+      <Route path="/" element={isSignedIn ? <DashboardLayout /> : <Navigate to={"/login"} />}>
+        <Route index element={<Navigate to={"dashboard"} />} />
+        <Route path="dashboard" element={<DashboardPage />} />
+        <Route path="products" element={<ProductsPage />} />
+        <Route path="orders" element={<OrdersPage />} />
+        <Route path="customers" element={<CustomersPage />} />
+      </Route>
+    </Routes>
+  );
 }
 
-export default App
+export default App;
