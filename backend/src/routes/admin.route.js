@@ -14,6 +14,7 @@ import { upload } from "../middleware/multer.middleware.js";
 
 const router = Router();
 
+
 // optimization - DRY
 router.use(protectRoute, adminOnly);
 

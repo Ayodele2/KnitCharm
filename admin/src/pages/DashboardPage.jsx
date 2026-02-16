@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { orderApi, statsApi } from "../lib/api";
 import { Wallet, PackageIcon, ShoppingBagIcon, UsersIcon } from "lucide-react";
 import { capitalizeText, formatDate, getOrderStatusBadge } from "../lib/utils";
+import * as Sentry from '@sentry/react';
 
 function DashboardPage() {
   const { data: ordersData, isLoading: ordersLoading } = useQuery({
@@ -53,6 +54,7 @@ function DashboardPage() {
           </div>
         ))}
       </div>
+
 
       {/* RECENT ORDERS */}
       <div className="card bg-base-100 shadow-xl">
